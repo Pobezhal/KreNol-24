@@ -1,0 +1,35 @@
+print('Zdarova. Pognali v krestiknolik pogonjaem. ')
+
+
+poleigry = [[' ', ' ', ' '],
+        [' ', ' ', ' '],
+        [' ', ' ', ' ']]
+
+def pole():
+    print('    1    2    3')
+    print(1, poleigry[0])
+    print(2, poleigry[1])
+    print(3, poleigry[2])
+
+
+def hody():
+    while True:
+        x, y = map(int, input('delayte hod snachala gorizontal potom stolbec ot 1 do 3: ').split())
+        if poleigry[x - 1][y - 1] == ' ':
+            poleigry[x - 1][y - 1] = 'X'
+        else:
+            print('kletka occupied')
+        return pole()
+
+def checkstatusgame():
+    print('ja ne znaiu kak opredelit pobeditelja')
+
+def chekXO():
+    print('ja ne znaiu kak cheredovat x/0')
+
+def igra(fn):
+    while True:
+        hody()
+
+
+igra(hody)
