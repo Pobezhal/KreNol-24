@@ -1,35 +1,125 @@
-print('Zdarova. Segodnya nikomy ne nuzni promlemi poetomu davai v krestiknolik pogonjaem. ')
+def greet():
+        print('   Здравия уважаемым людям')
+        print('        Вечер в хату    ')
+        print('   Играем в крестик нолик  ')
+        print('   Никому не нужны проблемы     ')
+        print('играйте честно - толька два целых числа через пробел')
+        print('я не умею в сложные условия')
+        print('    первое число строка, второе столбеts')
+        while True:
+                otwet = input('Вы готовы? y/n: ')
+                if otwet == 'y' or 'n':
+
+                        if otwet == 'n':
+                                print('Правильно, ваша игра - змейка на нокии. До свиданья.'
+                                      ''
+                                      '')
+                                exit()
+                        elif otwet == 'y':
+                                print('Ну погнали!')
+                                break
+        #как тут сделать!?!
+                        else:
+                                print('надо писать y или n!!')
+                        continue
 
 
-poleigry = [[' ', ' ', ' '],
-        [' ', ' ', ' '],
-        [' ', ' ', ' ']]
-
-def pole():
-    print('    1    2    3')
-    print(1, poleigry[0])
-    print(2, poleigry[1])
-    print(3, poleigry[2])
 
 
-def hody():
-    while True:
-        x, y = map(int, input('delayte hod snachala gorizontal potom stolbec ot 1 do 3: ').split())
-        if poleigry[x - 1][y - 1] == ' ':
-            poleigry[x - 1][y - 1] = 'X'
+
+field = [[' ' for j in range(3)] for i in range(3)]
+
+
+
+def show():
+
+        print('    0    1    2')
+        for i in range(3):
+                print( i, field[i])
+
+
+
+def zapros():
+        while True:
+                x, y = map(int, input('delayte hod snachala gorizontal potom stolbec ot 0 do 2 cherez probel: ').split())
+                if 0 <= x <= 2 and 0 <= y <= 2:
+                        if field[x][y] == ' ':
+                            return x, y
+                        else:
+                            print(' kletka occupied! фильтруй хрюканину! Еще раз!')
+                else:
+                    print('Неправильные цифры! Давай другие')
+
+
+
+def pobeda_check():
+        for i in range(3):
+                combinacia = []
+                for j in range(3):
+                        combinacia.append(field[i][j])
+                if combinacia == ['x', 'x', 'x']:
+                        print('Pobedil Krestik')
+                        return True
+                elif combinacia ==['0', '0', '0']:
+                        print('Нули взяли игру!')
+                        return True
+
+        for i in range(3):
+                combinacia = []
+                for j in range(3):
+                        combinacia.append(field[j][i])
+                if combinacia == ['x', 'x', 'x']:
+                        print('Pobedil Krestik')
+                        return True
+                elif combinacia == ['0', '0', '0']:
+                        print('Нули взяли игру!')
+                        return True
+
+
+        combinacia = []
+        for i in range(3):
+                combinacia.append(field[i][i])
+                if combinacia == ['x', 'x', 'x']:
+                        print('Pobedil Krestik')
+                        return True
+                elif combinacia ==['0', '0', '0']:
+                        print('Нули взяли игру!')
+                        return True
+
+        combinacia = []
+        for i in range(3):
+                combinacia.append(field[i][2-i])
+                if combinacia == ['x', 'x', 'x']:
+                        print('Pobedil Krestik')
+                        return True
+                elif combinacia == ['0', '0', '0']:
+                        print('Нули взяли игру!')
+                        return True
+
+greet()
+show()
+field = [[' ' for j in range(3)] for i in range(3)]
+
+num = 0
+while True:
+        num += 1
+        if num % 2  == 1:
+                print('Идет крест')
         else:
-            print('kletka occupied')
-        return pole()
+               print('Ходит нуль')
 
-def checkstatusgame():
-    print('ja ne znaiu kak opredelit pobeditelja')
+        x, y = zapros()
 
-def chekXO():
-    print('ja ne znaiu kak cheredovat x/0')
+        if num % 2 == 1:
+              field[x][y] = 'x'
+        else:
+                field[x][y] = '0'
+        show()
 
-def igra(fn):
-    while True:
-        hody()
+        if pobeda_check():
+                break
 
+        if num == 9:
+                print('Это ничья пацаны')
+                break
 
-igra(hody)
