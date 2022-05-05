@@ -18,7 +18,7 @@ def greet():
                         elif otwet == 'y':
                                 print('Ну погнали!')
                                 break
-        #как тут сделать!?!
+        
                         else:
                                 print('надо писать y или n!!')
                         continue
